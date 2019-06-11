@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { ConsultaCepService } from 'src/app/shared/services/consulta-cep.service';
+import { of } from 'rxjs';
 
 import 'rxjs/add/operator/map';
 
@@ -92,4 +93,40 @@ export class CadastroClienteComponent implements OnInit {
       'has-feedback': this.verificaValidTouched(campo)
     };
   }
+
+  consultaCEP() {
+    const cep = this.formulario.get('endereco.cep').value;
+
+    if (cep != null && cep !== '') {
+      this.cepService.consultaCEP(cep)
+      .subscribe(dados => this.populaDadosForm(dados));
+    }
+  }
+  populaDadosForm(dados) {
+    // this.formulario.setValue({});
+
+    this.formulario.patchValue({
+      endereco: {
+        rua: dados.logradouro,
+        // cep: dados.cep,
+        complemento: dados.complemento,
+        bairro: dados.bairro,
+        cidade: dados.localidade,
+        estado: dados.uf
+      }
+    });
+  }
+
+  resetaDadosForm() {
+    this.formulario.patchValue({
+      endereco: {
+        rua: null,
+        complemento: null,
+        bairro: null,
+        cidade: null,
+        estado: null
+      }
+    });
+  }
+
 }

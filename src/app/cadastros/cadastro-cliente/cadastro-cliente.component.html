@@ -8,8 +8,8 @@
           <div class="form-group" [ngClass]="aplicaCssErro('nome')">
             <label for="nome" class="control-label">Nome</label>
             <input type="text" class="form-control" formControlName="nome" id="nome" placeholder="Nome">
-            <app-campo-control-erro 
-              [mostrarErro]="verificaValidTouched('nome')" 
+            <app-campo-control-erro
+              [mostrarErro]="verificaValidTouched('nome')"
               msgErro="Nome é obrigatório.">
             </app-campo-control-erro>
           </div>
@@ -56,14 +56,15 @@
             <app-campo-control-erro [mostrarErro]="verificaValidTouched('contato')" msgErro="Contato é obrigatório."></app-campo-control-erro>
           </div>
         </div>
-      </div>  
+      </div>
       <hr>
       <div formGroupName="endereco">
         <div class="form-row">
           <div class="col-lg-4">
             <div class="form-group" [ngClass]="aplicaCssErro('endereco.cep')">
               <label for="cep" class="control-label">CEP</label>
-              <input type="text" class="form-control" id="cep">
+              <input type="text" class="form-control" id="cep"
+              formControlName="cep" (blur)="consultaCEP($event.target.value, formulario)">
               <app-campo-control-erro [mostrarErro]="verificaValidTouched('endereco.cep')" msgErro="CEP é obrigatório."></app-campo-control-erro>
             </div>
           </div>
@@ -117,8 +118,8 @@
         <button type="submit" class="btn btn-primary">Salvar</button>
         <button class="btn" (click)="resetar()">Cancelar</button>
       </div>
-    
-    
+
+
       <app-form-debug [form]="formulario"></app-form-debug>
     </form>
   </div>
