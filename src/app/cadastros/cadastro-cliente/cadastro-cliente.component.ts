@@ -76,7 +76,6 @@ export class CadastroClienteComponent implements OnInit {
   }
 
   verificaValidTouched(campo: string) {
-
    return !this.formulario.get(campo).valid && this.formulario.get(campo).touched;
   }
 
