@@ -1,9 +1,8 @@
 
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
 import { ConsultaCepService } from 'src/app/shared/services/consulta-cep.service';
-import { of } from 'rxjs';
 
 import 'rxjs/add/operator/map';
 
@@ -78,13 +77,6 @@ export class CadastroClienteComponent implements OnInit {
 
   verificaValidTouched(campo: string) {
    return !this.formulario.get(campo).valid && this.formulario.get(campo).touched;
-  }
-
-  verificaEmailValido(){
-    let campoEmail = this.formulario.get('email');
-    if (campoEmail.errors){
-      return campoEmail.errors['email'] && campoEmail.touched;
-    }
   }
 
   aplicaCssErro(campo: string) {
