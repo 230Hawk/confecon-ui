@@ -1,3 +1,175 @@
-<p>
-  cadastro-materiaprima works!
-</p>
+<div class="card card-fluid">
+  <h6 class="card-header">Cadastro de Materia Prima</h6>
+  <div class="card-body">
+    <form class="form-horizontal" [formGroup]="formulario" (ngSubmit)="onSubmit(formulario)">
+
+      <div class="form-row">
+        <div class="col-lg-2">
+          <div class="form-group">
+            <label for="codigo" class="control-label">Código</label>
+            <input type="text" class="form-control" formControlName="codigo" id="codigo" placeholder="Código">
+            <app-campo-control-erro
+              [fieldControl]="formulario.controls.codigo" 
+              messageValidator="O código é obrigatório.">
+            </app-campo-control-erro>
+          </div>
+        </div>
+        <div class="col-lg-5">
+          <div class="form-group">
+            <label for="descricao" class="control-label">Nome</label>
+            <input type="text" class="form-control" formControlName="nome" id="nome" placeholder="Nome da materia prima">
+            <app-campo-control-erro 
+              [fieldControl]="formulario.controls.nome" 
+              messageValidator="Nome é obrigatório">
+            </app-campo-control-erro>
+          </div>
+        </div>
+        <div class="col-lg-5">
+          <div class="form-group">
+            <label for="descricao" class="control-label">Descrição</label>
+            <input type="text" class="form-control" formControlName="descricao" id="descricao" placeholder="Breve descrição">
+            <app-campo-control-erro 
+              [fieldControl]="formulario.controls.descricao" 
+              messageValidator="A descrição é obrigatória">
+            </app-campo-control-erro>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="col-lg-2">
+          <div class="form-group">
+            <label for="codigo" class="control-label">Tipo</label>
+            <input type="text" class="form-control" formControlName="codigo" id="codigo">
+            <app-campo-control-erro
+              [fieldControl]="formulario.controls.codigo" 
+              messageValidator="O código é obrigatório.">
+            </app-campo-control-erro>
+          </div>
+        </div>
+        <div class="col-lg-5">
+          <div class="form-group">
+            <label for="descricao" class="control-label">Referência</label>
+            <input type="text" class="form-control" formControlName="nome" id="nome">
+            <app-campo-control-erro 
+              [fieldControl]="formulario.controls.nome" 
+              messageValidator="Nome é obrigatório">
+            </app-campo-control-erro>
+          </div>
+        </div>
+        <div class="col-lg-5">
+          <div class="form-group">
+            <label for="descricao" class="control-label">Fornecedor</label>
+            <input type="text" class="form-control" formControlName="descricao" id="descricao">
+            <app-campo-control-erro 
+              [fieldControl]="formulario.controls.descricao" 
+              messageValidator="A descrição é obrigatória">
+            </app-campo-control-erro>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="col-lg-2">
+          <div class="form-group">
+            <label for="codigo" class="control-label">Un</label>
+            <input type="text" class="form-control" formControlName="codigo" id="codigo">
+            <app-campo-control-erro
+              [fieldControl]="formulario.controls.codigo" 
+              messageValidator="O código é obrigatório.">
+            </app-campo-control-erro>
+          </div>
+        </div>
+        <div class="col-lg-2">
+          <div class="form-group">
+            <label for="descricao" class="control-label">Tamanho</label>
+            <input type="text" class="form-control" formControlName="nome" id="nome">
+            <app-campo-control-erro 
+              [fieldControl]="formulario.controls.nome" 
+              messageValidator="Nome é obrigatório">
+            </app-campo-control-erro>
+          </div>
+        </div>
+        <div class="col-lg-2">
+          <div class="form-group">
+            <label for="descricao" class="control-label">Custo</label>
+            <input type="text" class="form-control" formControlName="descricao" id="descricao">
+            <app-campo-control-erro 
+              [fieldControl]="formulario.controls.descricao" 
+              messageValidator="A descrição é obrigatória">
+            </app-campo-control-erro>
+          </div>
+        </div>
+        <div class="col-lg-2">
+          <div class="form-group">
+            <label for="descricao" class="control-label">Desperdicio</label>
+            <input type="text" class="form-control" formControlName="descricao" id="descricao">
+            <app-campo-control-erro 
+              [fieldControl]="formulario.controls.descricao" 
+              messageValidator="A descrição é obrigatória">
+            </app-campo-control-erro>
+          </div>
+        </div>
+        <div class="col-lg-2">
+          <div class="form-group">
+            <label for="descricao" class="control-label">aproveitamento</label>
+            <input type="text" class="form-control" formControlName="descricao" id="descricao">
+            <app-campo-control-erro 
+              [fieldControl]="formulario.controls.descricao" 
+              messageValidator="A descrição é obrigatória">
+            </app-campo-control-erro>
+          </div>
+        </div>
+        <div class="col-lg-2">
+          <div class="form-group">
+            <label for="descricao" class="control-label">composição</label>
+            <input type="text" class="form-control" formControlName="descricao" id="descricao">
+            <app-campo-control-erro 
+              [fieldControl]="formulario.controls.descricao" 
+              messageValidator="A descrição é obrigatória">
+            </app-campo-control-erro>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="col-lg-2">
+          <div class="form-group">
+            <label for="codigo" class="control-label">Lote</label>
+            <input type="text" class="form-control" formControlName="codigo" id="codigo">
+            <app-campo-control-erro
+              [fieldControl]="formulario.controls.codigo" 
+              messageValidator="O código é obrigatório.">
+            </app-campo-control-erro>
+          </div>
+        </div>
+        <div class="col-lg-2">
+          <div class="form-group">
+            <label for="descricao" class="control-label">Fabricação</label>
+            <input type="text" class="form-control" formControlName="nome" id="nome">
+            <app-campo-control-erro 
+              [fieldControl]="formulario.controls.nome" 
+              messageValidator="Nome é obrigatório">
+            </app-campo-control-erro>
+          </div>
+        </div>
+        <div class="col-lg-2">
+          <div class="form-group">
+            <label for="descricao" class="control-label">Origem</label>
+            <input type="text" class="form-control" formControlName="descricao" id="descricao">
+            <app-campo-control-erro 
+              [fieldControl]="formulario.controls.descricao" 
+              messageValidator="A descrição é obrigatória">
+            </app-campo-control-erro>
+          </div>
+        </div>
+      </div>
+
+      <hr>
+      <div class="form-actions">
+        <button type="submit" class="btn btn-primary">Salvar</button>
+        <button class="btn" (click)="formulario.reset()">Cancelar</button>
+      </div>
+    </form>
+  </div>
+</div>

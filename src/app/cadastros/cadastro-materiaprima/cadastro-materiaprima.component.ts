@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-cadastro-materiaprima',
@@ -10,9 +11,18 @@ export class CadastroMateriaprimaComponent implements OnInit {
 
   formulario: FormGroup;
   
-  constructor() { }
+  constructor(private formBuilder: FormBuilder,
+              private http: HttpClient) { }
 
   ngOnInit() {
+    this.formulario = this.formBuilder.group({
+      codigo: [null, Validators.required],
+      descricao: [null, Validators.required]
+    });
+  }
+
+  onSubmit(form: FormGroup) {
+
   }
 
 }

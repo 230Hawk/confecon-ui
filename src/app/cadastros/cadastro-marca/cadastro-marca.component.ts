@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-cadastro-marca',
@@ -10,9 +10,12 @@ export class CadastroMarcaComponent implements OnInit {
 
   formulario: FormGroup;
   
-  constructor() { }
+  constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit() {
+    this.formulario = this.formBuilder.group({
+      nome: [null, Validators.required]
+    });
   }
 
 }
