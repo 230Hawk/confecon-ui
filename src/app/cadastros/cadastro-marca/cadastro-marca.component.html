@@ -1,3 +1,25 @@
-<p>
-  cadastro-marca works!
-</p>
+<div class="card card-fluid">
+  <h6 class="card-header">Cadastro de Marca</h6>
+  <div class="card-body">
+    <form class="form-horizontal" [formGroup]="formulario" (ngSubmit)="onSubmit(formulario)">
+
+      <div class="form-row">
+        <div class="col-lg-12">
+          <div class="form-group">
+            <label for="nome" class="control-label">Nome</label>
+            <input type="text" class="form-control" formControlName="nome" id="nome" placeholder="Nome">
+            <app-campo-control-erro
+              [fieldControl]="formulario.controls.nome" 
+              messageValidator="Nome é obrigatório.">
+            </app-campo-control-erro>
+          </div>
+        </div>
+      </div>
+      <hr>
+      <div class="form-actions">
+        <button type="submit" class="btn btn-primary">Salvar</button>
+        <button class="btn" (click)="formulario.reset()">Cancelar</button>
+      </div>
+    </form>
+  </div>
+</div>

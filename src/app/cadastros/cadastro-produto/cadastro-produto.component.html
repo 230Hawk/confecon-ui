@@ -1,3 +1,36 @@
-<p>
-  cadastro-produto works!
-</p>
+<div class="card card-fluid">
+  <h6 class="card-header">Cadastro de Produto</h6>
+  <div class="card-body">
+    <form class="form-horizontal" [formGroup]="formulario" (ngSubmit)="onSubmit(formulario)">
+
+      <div class="form-row">
+        <div class="col-lg-6">
+          <div class="form-group">
+            <label for="nome" class="control-label">Nome</label>
+            <input type="text" class="form-control" formControlName="nome" id="nome" placeholder="Nome">
+            <app-campo-control-erro
+              [fieldControl]="formulario.controls.nome" 
+              messageValidator="Nome é obrigatório.">
+            </app-campo-control-erro>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="form-group">
+            <label for="descricao" class="control-label">Descrição</label>
+            <input type="text" class="form-control" formControlName="descricao" id="descricao" placeholder="Breve descrição do produto">
+            <app-campo-control-erro 
+              [fieldControl]="formulario.controls.descricao" 
+              messageValidator="A descrição do produto é obrigatória">
+            </app-campo-control-erro>
+          </div>
+        </div>
+      </div>
+
+      <hr>
+      <div class="form-actions">
+        <button type="submit" class="btn btn-primary">Salvar</button>
+        <button class="btn" (click)="formulario.reset()">Cancelar</button>
+      </div>
+    </form>
+  </div>
+</div>
