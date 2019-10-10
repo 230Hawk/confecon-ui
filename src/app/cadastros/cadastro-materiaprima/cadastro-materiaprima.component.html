@@ -112,7 +112,7 @@
         </div>
         <div class="col-lg-2">
           <div class="form-group">
-            <label for="descricao" class="control-label">aproveitamento</label>
+            <label for="descricao" class="control-label">Aproveitamento</label>
             <input type="text" class="form-control" formControlName="descricao" id="descricao">
             <app-campo-control-erro 
               [fieldControl]="formulario.controls.descricao" 
@@ -122,7 +122,7 @@
         </div>
         <div class="col-lg-2">
           <div class="form-group">
-            <label for="descricao" class="control-label">composição</label>
+            <label for="descricao" class="control-label">Composição</label>
             <input type="text" class="form-control" formControlName="descricao" id="descricao">
             <app-campo-control-erro 
               [fieldControl]="formulario.controls.descricao" 
@@ -160,6 +160,16 @@
             <app-campo-control-erro 
               [fieldControl]="formulario.controls.descricao" 
               messageValidator="A descrição é obrigatória">
+            </app-campo-control-erro>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="form-group">
+            <label for="marca" class="control-label">Marca</label>
+            <input type="text" class="form-control" formControlName="marca" id="marca">
+            <app-campo-control-erro 
+              [fieldControl]="formulario.controls.descricao" 
+              messageValidator="A marca é obrigatória">
             </app-campo-control-erro>
           </div>
         </div>

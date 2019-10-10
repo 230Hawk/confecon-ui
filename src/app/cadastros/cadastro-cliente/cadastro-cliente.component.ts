@@ -41,42 +41,42 @@ export class CadastroClienteComponent implements OnInit {
       nome: [null, Validators.required],
       email: [null, [Validators.email, Validators.required]],
       nomeFantasia: [null, Validators.required],
-      iEstadual: [null , Validators.required],
-      contato: [null ,Validators.required],
+      iEstadual: [null, Validators.required],
+      contato: [null, Validators.required],
       cpfCnpj: [null, Validators.required],
-
+      telefone1: [null, Validators.required],
+      telefone2: [null],
+      telefone3: [null],
       endereco: this.formBuilder.group({
-          cep:[null, Validators.required],
-          numero:[null, Validators.required],
-          complemento:[null],
-          rua:[null, Validators.required],
-          bairro:[null, Validators.required],
-          cidade:[null, Validators.required],
-          estado:[null, Validators.required],
-       })
+        cep:[null, Validators.required],
+        numero:[null, Validators.required],
+        complemento:[null],
+        rua:[null, Validators.required],
+        bairro:[null, Validators.required],
+        cidade:[null, Validators.required],
+        estado:[null, Validators.required],
+     })
     });
   }
 
-  onSubmit(formulario){
+  onSubmit(formulario) {
     console.log(this.formulario.value);
     this.http.post('http://localhost:8080/clientes', this.formulario.value)
-    .map(resp => resp)
-    .subscribe(dados => {
-      console.log(dados);
-      this.resetar();
-    },
-
-    (error: any) => alert('erro'));
+      .map(resp => resp)
+      .subscribe(dados => {
+        console.log(dados);
+        this.resetar();
+      });
     console.log(formulario);
   }
 
 
-  resetar(){
+  resetar() {
     this.formulario.reset();
   }
 
   verificaValidTouched(campo: string) {
-   return !this.formulario.get(campo).valid && this.formulario.get(campo).touched;
+    return !this.formulario.get(campo).valid && this.formulario.get(campo).touched;
   }
 
   aplicaCssErro(campo: string) {
@@ -87,20 +87,18 @@ export class CadastroClienteComponent implements OnInit {
   }
 
   consultaCEP() {
-    const cep = this.formulario.get('endereco.cep').value;
+    const cep = this.formulario.get('cep').value;
 
     if (cep != null && cep !== '') {
       this.cepService.consultaCEP(cep)
-      .subscribe(dados => this.populaDadosForm(dados));
+        .subscribe(dados => this.populaDadosForm(dados));
     }
   }
   populaDadosForm(dados) {
-    // this.formulario.setValue({});
 
     this.formulario.patchValue({
       endereco: {
-        rua: dados.logradouro,
-        // cep: dados.cep,
+        logradouro: dados.logradouro,
         complemento: dados.complemento,
         bairro: dados.bairro,
         cidade: dados.localidade,
@@ -112,7 +110,7 @@ export class CadastroClienteComponent implements OnInit {
   resetaDadosForm() {
     this.formulario.patchValue({
       endereco: {
-        rua: null,
+        logradouro: null,
         complemento: null,
         bairro: null,
         cidade: null,
