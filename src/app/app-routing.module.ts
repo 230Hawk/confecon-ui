@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { HomePageComponent } from './home-page/home-page.component';
 
 const routes: Routes = [
-  { path: 'cadastros', loadChildren: './cadastros/cadastros.module#CadastrosModule' },
+  { path: 'cadastros', loadChildren: () => import('./cadastros/cadastros.module').then(m => m.CadastrosModule) },
   { path: 'home', component: HomePageComponent },
 ];
 

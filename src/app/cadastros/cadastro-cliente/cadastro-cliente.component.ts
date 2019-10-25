@@ -47,27 +47,49 @@ export class CadastroClienteComponent implements OnInit {
       telefone1: [null, Validators.required],
       telefone2: [null],
       telefone3: [null],
-      endereco: this.formBuilder.group({
-        cep:[null, Validators.required],
-        numero:[null, Validators.required],
-        complemento:[null],
-        rua:[null, Validators.required],
-        bairro:[null, Validators.required],
-        cidade:[null, Validators.required],
-        estado:[null, Validators.required],
+       
+        endereco: this.formBuilder.group({
+          cep:[null, Validators.required],
+          numero:[null, Validators.required],
+          complemento:[null],
+          rua:[null, Validators.required],
+          bairro:[null, Validators.required],
+          cidade:[null, Validators.required],
+          estado:[null, Validators.required],
      })
     });
   }
 
   onSubmit(formulario) {
-    console.log(this.formulario.value);
-    this.http.post('http://localhost:8080/clientes', this.formulario.value)
-      .map(resp => resp)
-      .subscribe(dados => {
-        console.log(dados);
-        this.resetar();
-      });
-    console.log(formulario);
+
+    if (this.formulario.valid){
+
+      console.log(this.formulario.value);
+      this.http.post('http://localhost:8080/clientes', this.formulario.value)
+        .map(resp => resp)
+        .subscribe(dados => {
+          console.log(dados);
+          this.resetar();
+        });
+      console.log(formulario);
+
+    }else{
+      console.log("formulario invalido");
+      this.verificaValidacoesForm(this.formulario);
+    }
+   
+  }
+
+  verificaValidacoesForm(formGroup: FormGroup){
+
+    Object.keys(formGroup.controls).forEach(campo => {
+      console.log(campo);
+      const controle = formGroup.get(campo);
+      controle.markAsDirty();
+      if(controle instanceof FormGroup){
+        this.verificaValidacoesForm(controle);
+      }
+    }); 
   }
 
 
@@ -75,11 +97,18 @@ export class CadastroClienteComponent implements OnInit {
     this.formulario.reset();
   }
 
-  verificaValidTouched(campo: string) {
-    return !this.formulario.get(campo).valid && this.formulario.get(campo).touched;
+  verificaValidTouched(campo) {
+    return !this.formulario.get(campo).valid && (this.formulario.get(campo).touched || this.formulario.get(campo).dirty);
   }
 
-  aplicaCssErro(campo: string) {
+  verificaEmailInvalido(){
+    let campoEmail = this.formulario.get('email');
+    if(campoEmail.errors){
+      return campoEmail.errors['email'] && campoEmail.touched;
+    }
+  }
+
+  aplicaCssErro(campo) {
     return {
       'has-error': this.verificaValidTouched(campo),
       'has-feedback': this.verificaValidTouched(campo)
@@ -87,7 +116,7 @@ export class CadastroClienteComponent implements OnInit {
   }
 
   consultaCEP() {
-    const cep = this.formulario.get('cep').value;
+    const cep = this.formulario.get('endereco.cep').value;
 
     if (cep != null && cep !== '') {
       this.cepService.consultaCEP(cep)
@@ -98,8 +127,7 @@ export class CadastroClienteComponent implements OnInit {
 
     this.formulario.patchValue({
       endereco: {
-        logradouro: dados.logradouro,
-        complemento: dados.complemento,
+        rua: dados.logradouro,
         bairro: dados.bairro,
         cidade: dados.localidade,
         estado: dados.uf
@@ -111,7 +139,6 @@ export class CadastroClienteComponent implements OnInit {
     this.formulario.patchValue({
       endereco: {
         logradouro: null,
-        complemento: null,
         bairro: null,
         cidade: null,
         estado: null
